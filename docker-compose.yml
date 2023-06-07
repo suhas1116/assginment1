@@ -1,0 +1,24 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: backend.Dockerfile
+    ports:
+      - '3000:3000'
+    depends_on:
+      - database
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: forntend.Dockerfile
+    ports:
+      - '8080:8080'
+
+  database:
+    image: postgres
+    environment:
+      - POSTGRES_USER=your_db_username
+      - POSTGRES_PASSWORD=your_db_password
+      - POSTGRES_DB=your_db_name
